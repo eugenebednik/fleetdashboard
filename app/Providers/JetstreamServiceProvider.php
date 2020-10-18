@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Actions\Jetstream\AddTeamMember;
 use App\Actions\Jetstream\CreateTeam;
 use App\Actions\Jetstream\DeleteTeam;
-use App\Actions\Jetstream\DeleteUser;
 use App\Actions\Jetstream\UpdateTeamName;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
@@ -35,7 +34,6 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
         Jetstream::addTeamMembersUsing(AddTeamMember::class);
         Jetstream::deleteTeamsUsing(DeleteTeam::class);
-        Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 
     /**
@@ -54,10 +52,14 @@ class JetstreamServiceProvider extends ServiceProvider
             'delete',
         ])->description(__('Administrator users can perform any action.'));
 
-        Jetstream::role('editor', __('Editor'), [
+        Jetstream::role('editor', __('Moderator'), [
             'read',
             'create',
             'update',
-        ])->description(__('Editor users have the ability to read, create, and update.'));
+        ])->description(__('Moderators have the ability to read, create, and update.'));
+
+        Jetstream::role('registered', __('Registered'), [
+            'read',
+        ])->description(__('Registered users have the ability to read.'));
     }
 }
