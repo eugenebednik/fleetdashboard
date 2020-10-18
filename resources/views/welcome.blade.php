@@ -6,7 +6,7 @@
             </div>
         @endif
 
-        <div><a href="{{ route('discord.login') }}" class="btn btn-primary"/>Login With Discord</div>
+        @livewire('login-with-discord')
 
     </x-jet-authentication-card>
 </x-guest-layout>
