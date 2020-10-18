@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "eugenebednik/fleetdashboard",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Star Citizen fleet dashboard for orgs with Discord auth.",
     "keywords": [
-        "framework",
-        "laravel"
+        "Star Citizen",
+        "fleet",
+        "dashboard"
     ],
     "license": "MIT",
     "require": {
@@ -13,7 +14,10 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/jetstream": "^1.4",
+        "laravel/sanctum": "^2.6",
+        "laravel/tinker": "^2.0",
+        "livewire/livewire": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
