@@ -1,3 +1,3 @@
 <x-jet-button wire:click="loginWithDiscord">
-    {{ __('Login With Discord') }}
+    <i class="fa fa-discord"></i>&nbsp;{{ __('Login With Discord') }}
 </x-jet-button>
