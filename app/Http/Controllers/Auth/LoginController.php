@@ -46,15 +46,19 @@ class LoginController extends Controller
                 'nickname' => $user->getNickname(),
             ]);
 
-            /** @var User */
-            $newTeam = Team::forceCreate([
-                'user_id' => $newUser->id,
-                'name' => explode(' ', $user->name, 2)[0]."'s Team",
-                'personal_team' => true,
-            ]);
+            // Create the administrator team if none is found.
+            if (Team::all()->count() === 0) {
+                $newTeam = Team::forceCreate([
+                    'user_id' => $newUser->id,
+                    'name' => "Administrators",
+                    'personal_team' => false,
+                ]);
 
-            $newTeam->save();
-            $newUser->current_team_id = $newTeam->id;
+                $newTeam->save();
+
+                $newUser->current_team_id = $newTeam->id;
+            }
+
             $newUser->save();
 
             Auth::login($newUser);

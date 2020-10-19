@@ -19,8 +19,17 @@ Route::get('/', function () {
 });
 
 Route::get('login', [LoginController::class, 'redirectToDiscord'])->name('discord.login');
-Route::get('login/callback', [LoginController::class, 'handleDiscordCallback'])->name('discord.login.redirect');
+Route::get('login/callback', [LoginController::class, 'handleDiscordCallback'])
+    ->name('discord.login.redirect');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/dashboard', function () {
+        return view ('dashboard');
+    })->name('dashboard');
+
+    Route::get('ship-manufacturers', App\Http\Livewire\ShipManufacturers\ShipManufacturers::class)
+        ->name('ship-manufacturers');
+
+    Route::get('ships', App\Http\Livewire\Ships\Ships::class)
+        ->name('ships');
+});

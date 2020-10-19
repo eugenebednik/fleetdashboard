@@ -15,7 +15,15 @@ class CreateShipsTable extends Migration
     {
         Schema::create('ships', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->string('name');
+            $table->text('description');
             $table->timestamps();
+
+            $table->foreign('manufacturer_id')
+                ->references('id')
+                ->on('ship_manufacturers')
+                ->onDelete('cascade');
         });
     }
 
@@ -26,6 +34,8 @@ class CreateShipsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('ships');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -59,20 +59,22 @@
 
                         <!-- Team Management -->
                         @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Team') }}
-                            </div>
+                            @if(Auth::user()->isAdmin())
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Manage Team') }}
+                                </div>
 
-                            <!-- Team Settings -->
-                            <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                {{ __('Team Settings') }}
-                            </x-jet-dropdown-link>
-
-                            @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                    {{ __('Create New Team') }}
+                                <!-- Team Settings -->
+                                <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                    {{ __('Team Settings') }}
                                 </x-jet-dropdown-link>
-                            @endcan
+
+                                @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                                    <x-jet-dropdown-link href="{{ route('teams.create') }}">
+                                        {{ __('Create New Team') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+                            @endif
 
                             <div class="border-t border-gray-100"></div>
 
@@ -162,20 +164,23 @@
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="border-t border-gray-200"></div>
 
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage Team') }}
-                    </div>
+                    @if(Auth::user()->isAdmin())
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Manage Team') }}
+                        </div>
 
-                    <!-- Team Settings -->
-                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                        {{ __('Team Settings') }}
-                    </x-jet-responsive-nav-link>
 
-                    <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                        {{ __('Create New Team') }}
-                    </x-jet-responsive-nav-link>
+                        <!-- Team Settings -->
+                        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
+                            {{ __('Team Settings') }}
+                        </x-jet-responsive-nav-link>
 
-                    <div class="border-t border-gray-200"></div>
+                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
+                            {{ __('Create New Team') }}
+                        </x-jet-responsive-nav-link>
+
+                        <div class="border-t border-gray-200"></div>
+                    @endif
 
                     <!-- Team Switcher -->
                     <div class="block px-4 py-2 text-xs text-gray-400">

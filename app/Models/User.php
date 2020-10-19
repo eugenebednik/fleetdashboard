@@ -62,4 +62,13 @@ class User extends Authenticatable
     {
         return $this->avatar;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        $adminTeam = Team::where('name', 'Administrators')->firstOrFail();
+        return $this->belongsToTeam($adminTeam);
+    }
 }
