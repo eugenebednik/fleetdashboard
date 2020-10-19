@@ -108,6 +108,11 @@ class Ships extends Component
         $this->isEditing = false;
     }
 
+    public function dashboard()
+    {
+        $this->redirect(route('admin.index'));
+    }
+
     private function resetInputFields()
     {
         $this->manufacturerId = null;

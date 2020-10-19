@@ -49,10 +49,10 @@
                 </tbody>
             </table>
 
-            @can('create', \App\Models\ShipManufacturer::class)
             <div class="py-4 text-right">
+            <x-jet-secondary-button wire:click="dashboard()">⟵  {{ __('Administrative Dashboard') }}</x-jet-secondary-button>
+            @can('create', \App\Models\ShipManufacturer::class)
                 <x-jet-button wire:click="create()">{{ __('Add Manufacturer') }}</x-jet-button>
-            </div>
             @endcan
             </div>
         </div>

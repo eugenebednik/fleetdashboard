@@ -94,6 +94,11 @@ class ShipManufacturers extends Component
         $this->isOpen = false;
     }
 
+    public function dashboard()
+    {
+        $this->redirect(route('admin.index'));
+    }
+
     private function resetInputFields()
     {
         $this->tag = null;

@@ -27,9 +27,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         return view ('dashboard');
     })->name('dashboard');
 
-    Route::get('ship-manufacturers', App\Http\Livewire\ShipManufacturers\ShipManufacturers::class)
-        ->name('ship-manufacturers');
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+        Route::get('/', \App\Http\Livewire\Admin\AdminDashboard::class)->name('admin.index');
 
-    Route::get('ships', App\Http\Livewire\Ships\Ships::class)
-        ->name('ships');
+        Route::get('ship-manufacturers', App\Http\Livewire\ShipManufacturers\ShipManufacturers::class)
+            ->name('admin.ship-manufacturers');
+
+        Route::get('ships', App\Http\Livewire\Ships\Ships::class)
+            ->name('admin.ships');
+    });
 });

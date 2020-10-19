@@ -49,11 +49,12 @@
                 </tbody>
             </table>
 
+            <div class="py-4 text-right">
+            <x-jet-secondary-button wire:click="dashboard()">⟵  {{ __('Administrative Dashboard') }}</x-jet-secondary-button>
             @can('create', \App\Models\Ship::class)
-                <div class="py-4 text-right">
-                    <x-jet-button wire:click="create()">{{ __('Add Ship') }}</x-jet-button>
-                </div>
+                <x-jet-button wire:click="create()">{{ __('Add Ship') }}</x-jet-button>
             @endcan
+            </div>
         </div>
     </div>
 </div>
