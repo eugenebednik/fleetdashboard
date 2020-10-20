@@ -32,6 +32,6 @@
     </x-slot>
     <x-slot name="footer">
         <x-jet-button wire:click.prevent="store()">Save</x-jet-button>
-        <x-jet-button wire:click="closeModal()">Cancel</x-jet-button>
+        <x-jet-secondary-button wire:click="closeModal()">Cancel</x-jet-secondary-button>
     </x-slot>
 </x-jet-dialog-modal>
