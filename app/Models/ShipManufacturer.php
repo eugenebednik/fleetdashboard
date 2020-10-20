@@ -16,6 +16,7 @@ class ShipManufacturer extends Model
         'tag',
         'name',
         'description',
+        'asset',
     ];
 
     public function ships() : HasMany

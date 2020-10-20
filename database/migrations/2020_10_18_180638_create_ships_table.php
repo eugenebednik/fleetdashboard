@@ -18,6 +18,7 @@ class CreateShipsTable extends Migration
             $table->unsignedBigInteger('manufacturer_id');
             $table->string('name');
             $table->text('description');
+            $table->string('asset')->nullable();
             $table->timestamps();
 
             $table->foreign('manufacturer_id')

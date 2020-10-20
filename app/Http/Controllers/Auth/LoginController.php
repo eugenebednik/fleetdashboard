@@ -43,13 +43,14 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('discord')->user();
 
-        if (!$this->discordService->isUserAllowedToLogin($user)) {
-            return redirect('/')->withErrors(['message' => __('Login unauthorized.')]);
-        }
-
+        /** @var User $foundUser */
         $foundUser = User::where('discord_id', $user->id)->first();
 
         if ($foundUser) {
+            if (!$this->discordService->isUserAllowedToLogin($foundUser) && !$foundUser->isSuperAdmin()) {
+                return redirect('/')->withErrors(['message' => __('Login unauthorized.')]);
+            }
+
             $foundUser->avatar = $user->getAvatar();
             $foundUser->name = $user->getName();
             $foundUser->email = $user->getEmail();
@@ -59,6 +60,10 @@ class LoginController extends Controller
             Auth::login($foundUser);
             return redirect('/dashboard');
         } else {
+            if (!$this->discordService->isUserAllowedToLogin($user) && User::all()->count() !== 0) {
+                return redirect('/')->withErrors(['message' => __('Login unauthorized.')]);
+            }
+
             $newUser = User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),

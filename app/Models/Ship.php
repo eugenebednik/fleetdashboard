@@ -15,6 +15,7 @@ class Ship extends Model
     protected $fillable = [
         'name',
         'description',
+        'asset',
     ];
 
     public function manufacturer() : BelongsTo
