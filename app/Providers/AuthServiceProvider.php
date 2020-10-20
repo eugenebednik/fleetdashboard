@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\AllowedRole;
 use App\Models\Ship;
 use App\Models\ShipManufacturer;
 use App\Models\Team;
+use App\Policies\AllowedRolePolicy;
 use App\Policies\ShipManufacturerPolicy;
 use App\Policies\ShipPolicy;
 use App\Policies\TeamPolicy;
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         Team::class => TeamPolicy::class,
         ShipManufacturer::class => ShipManufacturerPolicy::class,
         Ship::class => ShipPolicy::class,
+        AllowedRole::class => AllowedRolePolicy::class,
     ];
 
     /**

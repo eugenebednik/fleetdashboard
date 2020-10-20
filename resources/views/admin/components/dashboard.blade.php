@@ -46,4 +46,23 @@
             </a>
         </div>
     </div>
+
+    <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="{{ route('admin.allowed-roles') }}">Role Manager</a></div>
+        </div>
+
+        <div class="ml-12">
+            <div class="mt-2 text-sm text-gray-500">
+                The Role Manager allows you to control which Discord users have the ability to login to this application.
+            </div>
+
+            <a href="{{ route('admin.allowed-roles') }}">
+                <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
+                    <div>Go to the Role Manager</div>
+                    <div class="ml-1 text-indigo-500">⟶</div>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>

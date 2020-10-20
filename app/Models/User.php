@@ -71,4 +71,13 @@ class User extends Authenticatable
         $adminTeam = Team::where('name', 'Administrators')->firstOrFail();
         return $this->belongsToTeam($adminTeam);
     }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        $adminTeam = Team::where('name', 'Administrators')->firstOrFail();
+        return $this->ownsTeam($adminTeam);
+    }
 }
