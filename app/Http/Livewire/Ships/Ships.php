@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Ships;
 
 use App\Models\Ship;
 use App\Models\ShipManufacturer;
-use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\WithFileUploads;
 
 class Ships extends Component
 {
     use AuthorizesRequests;
+    use WithFileUploads;
 
     public $ships;
     public $manufacturers;
@@ -18,6 +19,7 @@ class Ships extends Component
     public $manufacturer;
     public $name;
     public $description;
+    public $asset;
     public $isOpen = false;
     public $isEditing = false;
 
@@ -25,6 +27,7 @@ class Ships extends Component
         'manufacturer' => 'required|exists:ship_manufacturers,id',
         'name' => 'required|min:4',
         'description' => 'required',
+        'asset' => 'image|max:2048'
     ];
 
     public function render()
@@ -56,7 +59,6 @@ class Ships extends Component
         $this->shipId = $id;
         $this->manufacturer = $ship->manufacturer->id;
         $this->name = $ship->name;
-        $this->name = $ship->name;
         $this->description = $ship->description;
 
         $this->openModal();
@@ -75,6 +77,7 @@ class Ships extends Component
         $ship->manufacturer()->associate(ShipManufacturer::find($this->manufacturer));
         $ship->name = $this->name;
         $ship->description = $this->description;
+        $ship->asset = $this->asset->store('public/uploads/ships');
         $ship->save();
 
         session()->flash('message', $this->shipId
@@ -118,5 +121,6 @@ class Ships extends Component
         $this->manufacturerId = null;
         $this->name = null;
         $this->description = null;
+        $this->asset = null;
     }
 }

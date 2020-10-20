@@ -18,13 +18,23 @@
                 </div>
                 <div class="mb-6">
                     <x-jet-label for="name" value="{{ __('Name') }}" />
-                    <x-jet-input type="text" id="name" placeholder="Enter Name" wire:model="name" />
+                    <x-jet-input type="text" id="name" placeholder="{{__('Enter name...')}}" wire:model="name" />
                     <x-jet-input-error for="name" class="mt-2" />
-
                 </div>
                 <div class="mb-6">
+                    <x-jet-label for="asset" value="{{ __('Asset') }}" />
+                    <x-jet-input type="file" id="asset" placeholder="{{__('Select an image...')}}" wire:model="asset" />
+                    <x-jet-input-error for="asset" class="mt-2" />
+                </div>
+                @if ($asset)
+                <div class="mb-6">
+                    {{ __('Image Preview:') }}
+                    <img src="{{ $asset->temporaryUrl() }}" width="250" height="86" />
+                </div>
+                @endif
+                <div class="mb-6">
                     <x-jet-label for="description" value="{{ __('Description') }}" />
-                    <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4" id="description" wire:model="description" placeholder="Enter Description"></textarea>
+                    <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4" id="description" wire:model="description" placeholder="{{__('Enter description...')}}"></textarea>
                     <x-jet-input-error for="description" class="mt-2" />
                 </div>
             </div>

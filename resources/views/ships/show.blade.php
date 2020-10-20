@@ -27,22 +27,24 @@
                 </div>
             @endif
 
-            <table class="table-auto w-full">
+            <table class="table-fixed w-full">
                 <thead>
                 <tr class="bg-gray-100">
-                    <th class="px-4 py-2">Manufacturer Tag</th>
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Description</th>
-                    <th class="px-4 py-2">Action</th>
+                    <th class="w-1/4 px-4 py-2">{{ __('Asset') }}</th>
+                    <th class="w-1/6 px-4 py-2">{{ __('Tag') }}</th>
+                    <th class="w-1/6 px-4 py-2">{{ __('Name') }}</th>
+                    <th class="w-1/2 px-4 py-2">{{ __('Description') }}</th>
+                    <th class="w-1/6 py-2">{{ __('Action') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($ships as $ship)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $ship->manufacturer->tag }}</td>
-                        <td class="border px-4 py-2">{{ $ship->name }}</td>
-                        <td class="border px-4 py-2">{{ $ship->description }}</td>
-                        <td class="border px-4 py-2 text-center">
+                    <tr class="bg-white">
+                        <td class="px-4 py-2 text-center"><img src="{{$ship->image}}" alt="{{$ship->name}}" width="360" height="123" class="rounded-md"/></td>
+                        <td class="px-4 py-2 text-center">{{ $ship->manufacturer->tag }}</td>
+                        <td class="px-4 py-2 text-center">{{ $ship->name }}</td>
+                        <td class="px-4 py-2">{{ $ship->description }}</td>
+                        <td class="px-4 py-2 text-center">
                             @can('update', $ship)
                                 <x-jet-button wire:click="edit({{ $ship->id }})" ><i class="fa fa-edit"></i></x-jet-button>
                             @endcan

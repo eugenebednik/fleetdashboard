@@ -27,22 +27,26 @@
                 </div>
             @endif
 
-            <table class="table-auto w-full">
+            <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-2">{{__('Tag')}}</th>
-                        <th class="px-4 py-2">{{__('Name')}}</th>
-                        <th class="px-4 py-2">{{__('Description')}}</th>
-                        <th class="px-4 py-2">{{__('Action')}}</th>
+                        <th class="w-1/4 px-5 py-2">{{__('Asset')}}</th>
+                        <th class="w-1/6 px-4 py-2">{{__('Tag')}}</th>
+                        <th class="w-1/6 px-4 py-2">{{__('Name')}}</th>
+                        <th class="w-1/6 px-4 py-2">{{__('Hangar XPLORer Tag')}}</th>
+                        <th class="w-1/4 px-4 py-2">{{__('Description')}}</th>
+                        <th class="w-1/6 px-4 py-2">{{__('Action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($manufacturers as $manufacturer)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $manufacturer->tag }}</td>
-                        <td class="border px-4 py-2">{{ $manufacturer->name }}</td>
-                        <td class="border px-4 py-2">{{ $manufacturer->description }}</td>
-                        <td class="border px-4 py-2 text-center">
+                    <tr class="bg-white">
+                        <td class="px-4 py-2 text-center"><img src="{{ $manufacturer->image }}" alt="{{ $manufacturer->name }}" width="150" height="150" /></td>
+                        <td class="px-4 py-2 text-center">{{ $manufacturer->tag }}</td>
+                        <td class="px-4 py-2 text-center">{{ $manufacturer->name }}</td>
+                        <td class="px-4 py-2 text-center">{{ $manufacturer->xplorer_tag }}</td>
+                        <td class="px-4 py-2">{{ $manufacturer->description }}</td>
+                        <td class="px-4 py-2 text-center">
                             @can('update', $manufacturer)
                             <x-jet-button wire:click="edit({{ $manufacturer->id }})" ><i class="fa fa-edit"></i></x-jet-button>
                             @endcan

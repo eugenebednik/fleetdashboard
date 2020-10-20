@@ -18,6 +18,7 @@ class CreateShipManufacturersTable extends Migration
             $table->string('tag');
             $table->string('name');
             $table->text('description');
+            $table->string('xplorer_tag');
             $table->string('asset')->nullable();
             $table->timestamps();
         });
